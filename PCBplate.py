@@ -7,4 +7,6 @@ client=ModbusTcpClient('10.20.3.122',port=502)
 if client.connect():
     #slave urządzenia RTU ID1
     slave_id=1
+    #No i zobaczymy co dalej.
+
     

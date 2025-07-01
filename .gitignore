@@ -1,0 +1,5 @@
+# Ignoruj środowisko wirtualne
+modenv/
+
+# Ignoruj pliki pythona
+__pycache__/
