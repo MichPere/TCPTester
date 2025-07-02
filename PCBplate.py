@@ -4,7 +4,7 @@ from pymodbus.constants import Endian
 import time
 
 # Adres IP i port konwertera Modbus TCP
-HOST = '192.168.1.100'
+HOST = '192.168.0.7'
 PORT = 502
 
 # Adres ID urządzenia Modbus RTU
