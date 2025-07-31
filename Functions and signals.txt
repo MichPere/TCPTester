@@ -1,5 +1,17 @@
+# nazwy sesnorów odpowiadają wartością odczytywanych przez system
+
 Funkcje Bloki
-	- autoTest
+	- Sprawdzenie poziomu wody w zbiorniku; Check level of water tank
+
+	- Napełnianie systemu wodą; Fill system of water
+		- sprawdź czy system jest pusty
+		- napełnij
+
+	- Test szczelności
+		- test szczelności powietrzem
+		- test szczelności wodą
+		
+
 
 	- napełnianie
 		-20-BL1 LevelSensor
