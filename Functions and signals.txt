@@ -10,21 +10,22 @@ Funkcje Bloki
 	- Test szczelności
 		- test szczelności powietrzem
 		- test szczelności wodą
+
+	- Obsługa filtra
+		- sprawdzenie stopnia zabrudzenia
+		- proces płukania zwrotnego.
 		
-
-
-	- napełnianie
-		-20-BL1 LevelSensor
-		-20-BP1 Pressure Sensor
-		-20-BP2 Pressure Sensor
 		
 	
 	
-	- próba ciśnienia wodą
-	- próba ciśnieia powietrzem
-	- praca pomop
-	- odpowietrznie
-	- opróżnianie
-	- uzupełnianie wody w zbiorniku
-	- detekcja stopnia zanieczyszczenia filtra po różnicy ciśnień
-	- obsluga czyszczenia filtra
+	x- próba ciśnienia wodą
+	x- próba ciśnieia powietrzem
+	- praca pomop, sterowanie przepływem
+	x- odpowietrznie
+	x- opróżnianie
+	x- uzupełnianie wody w zbiorniku
+	x- detekcja stopnia zanieczyszczenia filtra po różnicy ciśnień
+	x- obsluga czyszczenia filtra
+	- Flash
+
+	- złożenie do KUPY
