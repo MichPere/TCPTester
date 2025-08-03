@@ -15,7 +15,7 @@ try
 except
     
     if ERROR==True
-    Failed attempt\n fill of water tank
+    Failed attempt\n fill of water tank 
     if 20-K5 is OPEN
         20-K5 CLOSE
 Return: Flag_Level
