@@ -112,12 +112,12 @@ except
     if if 20-K6 is OPEN
         CLOSE 20-K6
     OPEN 20-K2 \nDelay T:=Ts1 \nCLOSE 20-K2  
-Return: Flag_Terst_Result 
+Return: Flag_ATerst_Result 
 end
 ```
 
 ## 🔹 Pressure Water Test
-##  def-> pressure water test(Ppa, Pd, Tw, Td, Ts1, Ts2)
+##  def-> pressure water test(Ppa, Pd, Tw, Td, Ts1)
 ```tefcha
 call: \nWater test presure
 try
@@ -126,17 +126,22 @@ try
         if 20-M3 is STOP
             START 20-M3
         if Tw>=Ts
-            STOP 20-M3
+            set: \nERROR:=True
             break
     STOP 20-M3
-    Ptw:=20-BP1-Pd
+    ∆P:=20-BP1-Pd
     call: \nDelay(Td)
-    if Ptw<=20-PB1
+    if ∆P<=20-PB1
         set: \nWater Test Result:=Pass
     else
         set: \nWater Test Result:=FAILED
 except
-
+    if ERROR==True
+    set Pressure Water Test: None
+    if if 20-M3 is RUN
+        STOP 20-M3
+    OPEN 20-K2 \nDelay T:=Ts1 \nCLOSE 20-K2  
+Return: Flag_WTest_Result 
 end
 ```
 

@@ -58,12 +58,12 @@ Parametry Funkcji:
 		Ts - mierzony czas napełniania.
 
 #------------------------------------------------------
-	pressure water test(Ps, Pda, Twa, Td, Ts1)
-		Ps - ciśnienie początkowe próby, powietrza.
-		Pda - dopuszczalny spadek ciśnienia powietrza. 
-		Twa - maksymalny czas napełnia systemu powietrzem.
+	pressure water test(Ps, Pd, Tw, Td, Ts1)
+		Ps - ciśnienie początkowe wody.
+		Pd - dopuszczalny spadek ciśnienia powietrza. 
+		Tw - maksymalny czas napełnia systemu powietrzem.
 		Td - czas opóźnienia, stabilizacja ciśnienia w układzie.
-		Ts1 - czas potrzebny na opróżnienie układu z powietrza.
+		Ts1 - czas potrzebny na opróżnienie układu.
 		
 		Ts - mierzony czas napełniania.
 
