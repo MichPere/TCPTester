@@ -29,3 +29,27 @@ Funkcje Bloki
 	- Flash
 
 	- złożenie do KUPY
+
+Parametry Funkcji:
+
+	level_of_water(Ls, Tw)
+		Ls - maksymalny poziom wody <- zadany
+		Tw - maksymalny czas napełniania zbiornika.
+		
+		Ts - mierzony czas napełniania zbiornika.
+#------------------------------------------------------
+	fill_system_of_water(Pm, Ppa, Ppr, Tw, Ts)
+		Pm - ciśnienienie minimalne (~ 0 bar)
+		Ppa - początkowe ciśnienie próby lekko przewyższone od Ppa>Ppr
+		Ppr - ciśnieie końcowe próby ciśnienia.
+		Tw - maksymalny czas napełnia systemu wodą.
+		
+		Ts - mierzony czas napełniania systemu.
+#------------------------------------------------------
+	pressure Test(Ps, Psw, Td)
+		Ps -
+		Psw - 
+		Pta - minimalne ciśnienie próby. 
+		Td - czas opóźnienia, stabilizacja układu.
+		Ts - mierzony czas napełniania.
+# Zrobić próbę z spadkiem ciśnienia 
