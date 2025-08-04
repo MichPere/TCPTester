@@ -83,8 +83,8 @@ end
 ## 🔹 Pressure Air Test
 ##  def-> pressure air test(Ps, Pda, Twa Td, Ts1)
 ```tefcha
+call: \nPressure Air Test
 try
-    call: \nPressure Air Test
     OPEN 20-K6
     while Ps>20-BP1
         if Twa>Ts1
@@ -117,33 +117,27 @@ end
 ```
 
 ## 🔹 Pressure Water Test
-##  def-> pressure water test(Ps, Pd, Td, Ts1, Ts2)
+##  def-> pressure water test(Ppa, Pd, Tw, Td, Ts1, Ts2)
 ```tefcha
+call: \nWater test presure
 try
-    # after fill_system_of_water(Pm, Ppa, Ppr, Tw, T1)
 
-    if Psp<20-BP1
-        Test Result:=Pass                
-
-    
-    set: \nTest Result:=FAILED
-
-    OPEN 20-K2
-    call: \nDelay(Ts1)
-    CLOSE 20-K2 
-
-    CALL: fill_system_of_water()
-    Delay T:=Ts2
-                    
-    if Psw<20-BP1
-        Test Result:=Pass                
-    else 
-        Test Result:=FAILED
-    OPEN 20-K2 \nDelay T:=Ts1 \nCLOSE 20-K2
-    
-    Test Result:=FAILED
+    while Ppa<20-BP1
+        if 20-M3 is STOP
+            START 20-M3
+        if Tw>=Ts
+            STOP 20-M3
+            break
+    STOP 20-M3
+    Ptw:=20-BP1-Pd
+    call: \nDelay(Td)
+    if Ptw<=20-PB1
+        set: \nWater Test Result:=Pass
+    else
+        set: \nWater Test Result:=FAILED
 except
 
+end
 ```
 
 
