@@ -33,23 +33,38 @@ Funkcje Bloki
 Parametry Funkcji:
 
 	level_of_water(Ls, Tw)
-		Ls - maksymalny poziom wody <- zadany
+		Ls - maksymalny poziom wody <- zadany.
 		Tw - maksymalny czas napełniania zbiornika.
 		
 		Ts - mierzony czas napełniania zbiornika.
+
 #------------------------------------------------------
-	fill_system_of_water(Pm, Ppa, Ppr, Tw, Ts)
-		Pm - ciśnienienie minimalne (~ 0 bar)
-		Ppa - początkowe ciśnienie próby lekko przewyższone od Ppa>Ppr
-		Ppr - ciśnieie końcowe próby ciśnienia.
+	fill_system_of_water(Pm, Ppa, T1, Tw, Ts)
+		Pm - ciśnienienie minimalne (~ 0 bar).
+		Ppa - początkowe ciśnienie robocze.
+		T1 - czas odpowietrzania układu podczas napełniania.
 		Tw - maksymalny czas napełnia systemu wodą.
 		
 		Ts - mierzony czas napełniania systemu.
+
 #------------------------------------------------------
-	pressure Test(Ps, Psw, Td)
-		Ps -
-		Psw - 
-		Pta - minimalne ciśnienie próby. 
-		Td - czas opóźnienia, stabilizacja układu.
+	pressure air test(Ps, Pda, Twa, Td, Ts1)
+		Ps - ciśnienie początkowe próby, powietrza.
+		Pda - dopuszczalny spadek ciśnienia powietrza. 
+		Twa - maksymalny czas napełnia systemu powietrzem.
+		Td - czas opóźnienia, stabilizacja ciśnienia w układzie.
+		Ts1 - czas potrzebny na opróżnienie układu z powietrza.
+		
 		Ts - mierzony czas napełniania.
-# Zrobić próbę z spadkiem ciśnienia 
+
+#------------------------------------------------------
+	pressure water test(Ps, Pda, Twa, Td, Ts1)
+		Ps - ciśnienie początkowe próby, powietrza.
+		Pda - dopuszczalny spadek ciśnienia powietrza. 
+		Twa - maksymalny czas napełnia systemu powietrzem.
+		Td - czas opóźnienia, stabilizacja ciśnienia w układzie.
+		Ts1 - czas potrzebny na opróżnienie układu z powietrza.
+		
+		Ts - mierzony czas napełniania.
+
+
