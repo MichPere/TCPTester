@@ -1,26 +1,10 @@
 # nazwy sesnorów odpowiadają wartością odczytywanych przez system
 
-Funkcje Bloki
-	- Sprawdzenie poziomu wody w zbiorniku; Check level of water tank
-
-	- Napełnianie systemu wodą; Fill system of water
-		- sprawdź czy system jest pusty
-		- napełnij
-
-	- Test szczelności
-		- test szczelności powietrzem
-		- test szczelności wodą
-
-	- Obsługa filtra
-		- sprawdzenie stopnia zabrudzenia
-		- proces płukania zwrotnego.
-		
-		
+Co do zrobienia?	
 	
-	
-	x- próba ciśnienia wodą
 	x- próba ciśnieia powietrzem
-	- praca pomop, sterowanie przepływem
+	x- próba ciśnienia wodą
+	- praca pomop, sterowanie przepływem, sterowanie ciśnieniem
 	x- odpowietrznie
 	x- opróżnianie
 	x- uzupełnianie wody w zbiorniku
@@ -30,7 +14,9 @@ Funkcje Bloki
 
 	- złożenie do KUPY
 
-Parametry Funkcji:
+
+#=======  Funkcje, Bloki -> Parametry Funkcji: ===============
+#-------------------------------------------------------
 
 	level_of_water(Ls, Tw)
 		Ls - maksymalny poziom wody <- zadany.
@@ -39,6 +25,7 @@ Parametry Funkcji:
 		Ts - mierzony czas napełniania zbiornika.
 
 #------------------------------------------------------
+
 	fill_system_of_water(Pm, Ppa, T1, Tw, Ts)
 		Pm - ciśnienienie minimalne (~ 0 bar).
 		Ppa - początkowe ciśnienie robocze.
@@ -48,6 +35,7 @@ Parametry Funkcji:
 		Ts - mierzony czas napełniania systemu.
 
 #------------------------------------------------------
+
 	pressure air test(Ps, Pda, Twa, Td, Ts1)
 		Ps - ciśnienie początkowe próby, powietrza.
 		Pda - dopuszczalny spadek ciśnienia powietrza. 
@@ -58,6 +46,7 @@ Parametry Funkcji:
 		Ts - mierzony czas napełniania.
 
 #------------------------------------------------------
+
 	pressure water test(Ps, Pd, Tw, Td, Ts1)
 		Ps - ciśnienie początkowe wody.
 		Pd - dopuszczalny spadek ciśnienia powietrza. 
@@ -67,4 +56,10 @@ Parametry Funkcji:
 		
 		Ts - mierzony czas napełniania.
 
+#-------------------------------------------------------
+	check_of _filter(Ps)
+		Ps - maksymalne strata ciśnienie na filtrze
 
+#------------------------------------------------------
+	degree_of_cligging(Tc)
+		Tc - 

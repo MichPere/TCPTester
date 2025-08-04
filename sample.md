@@ -141,7 +141,7 @@ except
     if if 20-M3 is RUN
         STOP 20-M3
     OPEN 20-K2 \nDelay T:=Ts1 \nCLOSE 20-K2  
-Return: Flag_WTest_Result 
+Return: Flag_WTest_Result
 end
 ```
 
@@ -184,13 +184,50 @@ except
     Manual stopped
     if if 20-K9 is OPEN
         CLOSE 20-K9
-
 Return: CleaningStatus     
 end
 ```
 
 ## 🔹 Setting and controlling flow 
-##  def-> flow_control()
+##  def-> flow_control(Fn, Is, Fmin, Fmax, F)
 ```tefcha
+Start
+Set Vmin = wartość_minimalna_startu
+Set Vn   = zadana_wartość_przepływu
+Randomly select LeadPump from {M1, M2}
+Set StandbyPump = other pump
 
+Start LeadPump
+Set current_signal to Vmin
+Activate PID regulator for LeadPump with feedback from flowmeter
+
+if Vn <= 300 then
+    while current_flow < Vn
+        RampUp current_signal gradually to achieve Vn
+    end
+    Stop StandbyPump
+else
+    Start StandbyPump
+    Set current_signal_Standby = Vmin
+    Activate PID regulator for StandbyPump with feedback from flowmeter
+
+    while combined_flow < Vn
+        RampUp current_signal and current_signal_Standby gradually to achieve Vn
+    end
+end
+
+Monitor pumps and flow continuously
+
+Stop
+```
+```mermaid
+%%{ init: { "theme": "default", "themeVariables": { "background": "#ffffff", "lineColor": "rgba(15, 155, 26, 3)", "fontColor": "#0f0f0f5b" }, "flowchart": { "curve": "linear" } } }%%
+graph TD
+  Start[START] --> Random[Master Pomp
+  Random 20-M1 or 20-M2 <-Master Pomp]-->
+  Flow[Flow>=300]-->Check{Czy warunek A?}
+  Check -- Tak --> Action1[Wykonaj akcję A]
+  Check -- Nie --> Action2[Wykonaj akcję B]
+  Action1 --> End[STOP]
+  Action2 --> End
 ```
