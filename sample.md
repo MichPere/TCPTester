@@ -165,8 +165,8 @@ Return: Flag_FiltrStatus
 End
 ```
 
-## 🔹 Filter Degree of Clogging
-##  def-> degree_of_cligging(Tc)
+## 🔹 Filter Rinsing of Filter
+##  def-> rinsing_of_filter(Tc)
 ```tefcha
 try
 
@@ -174,8 +174,14 @@ try
         if Test is STOPED
             if Push Button\n START Rinsing 
                 Locked Start of Test
-                OPEN 20-M_Filter
-                Delay:=Tc
+                while Tc<Ts
+                    if if 20-K9 is CLOSE
+                        OPEN 20-K9
+                    if call: \nCANCEL Rinsing
+                        Return status: \nManual stopped
+                        break
+                    
+                
                 CLOSE 20-K9
                 Unlocked Start of Test
                 Warning: None
@@ -184,6 +190,7 @@ except
     Manual stopped
     if if 20-K9 is OPEN
         CLOSE 20-K9
+    Unlocked Start of Test
 Return: CleaningStatus     
 End
 ```
@@ -279,18 +286,38 @@ Return: FlushingStatus
 End
 ```
 
+## 🔹 Comparing flows
+##  def-> comparing(Im)
+```tefcha
+try
+    Randomly select LeadPump from {M1, M2}
+    call: \nSTART chosen Pump
+    while RUN pomp
+        Set current signal to Im
+        if call: \nSTOP
+            call: \nSTOP chosen pump
+            break
+except
+
+End
+```
 ## 🔹 Layout 
 ##  def-> flayout()
 ```tefcha
 Level of water tank
+if Check filtr condition
+else 
+    Rinsign    
+
 Pressure air test
 Fill system of water
-if Presure water test
+if Requirement water test
+    Pressure water test
+Flushing of the system
+Compare flows
 Flow control of pumps
 call: \nTEST of Panel
 Remove water from system
-
-
 
 
 End

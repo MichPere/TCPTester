@@ -10,7 +10,8 @@ Co do zrobienia?
 	x- uzupełnianie wody w zbiorniku
 	x- detekcja stopnia zanieczyszczenia filtra po różnicy ciśnień
 	x- obsluga czyszczenia filtra
-	- Flash
+	x- pompa obiegowa na niskim poziomie
+	x- Flash
 
 	x- złożenie do KUPY
 
@@ -61,8 +62,8 @@ Co do zrobienia?
 		Ps - maksymalne strata ciśnienie na filtrze
 
 #------------------------------------------------------
-	degree_of_cligging(Tc)
-		Tc - 
+	insing_of_filter(Tc)
+		Tc - czas potrzebny na przepłukanie filtra
 
 #------------------------------------------------------
 	flow_control_of_pumps(Fmin, Fn)
@@ -72,6 +73,10 @@ Co do zrobienia?
 #------------------------------------------------------
 	empting(Tt)
 		Tt - przewidywany czas opróżniania układu.
+
+#------------------------------------------------------
+	comparing_flow(Im)
+		Im - wartość prądu pętli prądowej (prędkość obrotowa pompy)
 
 #------------------------------------------------------
 	flushing(Q,Im)
