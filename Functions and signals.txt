@@ -4,7 +4,7 @@ Co do zrobienia?
 	
 	x- próba ciśnieia powietrzem
 	x- próba ciśnienia wodą
-	- praca pomop, sterowanie przepływem, sterowanie ciśnieniem
+	x- praca pomop, sterowanie przepływem, sterowanie ciśnieniem
 	x- odpowietrznie
 	x- opróżnianie
 	x- uzupełnianie wody w zbiorniku
@@ -12,7 +12,7 @@ Co do zrobienia?
 	x- obsluga czyszczenia filtra
 	- Flash
 
-	- złożenie do KUPY
+	x- złożenie do KUPY
 
 
 #=======  Funkcje, Bloki -> Parametry Funkcji: ===============
@@ -63,3 +63,19 @@ Co do zrobienia?
 #------------------------------------------------------
 	degree_of_cligging(Tc)
 		Tc - 
+
+#------------------------------------------------------
+	flow_control_of_pumps(Fmin, Fn)
+		Fmin - przepływ minimalny
+		Fn - przepływ nominalny
+
+#------------------------------------------------------
+	empting(Tt)
+		Tt - przewidywany czas opróżniania układu.
+
+#------------------------------------------------------
+	flushing(Q,Im)
+		Q - Ile razy ukłap będzie przepłukiwany
+		Im - wartość prądu pętli prądowej (prędkość obrotowa pompy)
+		Tp - czas płukania i przerwy.
+		Tw - maksymalny czas operacji

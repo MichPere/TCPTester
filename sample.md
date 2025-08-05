@@ -20,7 +20,7 @@ except
     if if 20-K5 is OPEN
         CLOSE 20-K5 
 Return: \nFlag_Level
-end
+End
 ```
 ## 🔹 Fill System of Water
 ##  def-> fill_system_of_water(Pm, Ppa, Ppr, Tw, T1)
@@ -77,7 +77,7 @@ except
     if if 20-K8 is CLOSE
         OPEN 20-K8
 Return: \nFlag_Filling   
-end
+End
 ```
 
 ## 🔹 Pressure Air Test
@@ -113,7 +113,7 @@ except
         CLOSE 20-K6
     OPEN 20-K2 \nDelay T:=Ts1 \nCLOSE 20-K2  
 Return: Flag_ATerst_Result 
-end
+End
 ```
 
 ## 🔹 Pressure Water Test
@@ -142,7 +142,7 @@ except
         STOP 20-M3
     OPEN 20-K2 \nDelay T:=Ts1 \nCLOSE 20-K2  
 Return: Flag_WTest_Result
-end
+End
 ```
 
 
@@ -162,7 +162,7 @@ except
     Pressure measurement ERROR
 
 Return: Flag_FiltrStatus
-end
+End
 ```
 
 ## 🔹 Filter Degree of Clogging
@@ -185,49 +185,113 @@ except
     if if 20-K9 is OPEN
         CLOSE 20-K9
 Return: CleaningStatus     
-end
+End
 ```
 
-## 🔹 Setting and controlling flow 
-##  def-> flow_control(Fn, Is, Fmin, Fmax, F)
+## 🔹 Setting and controlling flow of pumps 
+##  def-> flow_control_of_pumps(Fmin, Fn)
 ```tefcha
-Start
-Set Vmin = wartość_minimalna_startu
-Set Vn   = zadana_wartość_przepływu
-Randomly select LeadPump from {M1, M2}
-Set StandbyPump = other pump
+Handling pumps
+try
+    Randomly select LeadPump from {M1, M2}
+    Set Fmin:= Fmin
+    Set Fn:= Fn
 
-Start LeadPump
-Set current_signal to Vmin
-Activate PID regulator for LeadPump with feedback from flowmeter
+    call: \nStart LeadPump
+    Set current_signal to Fmin
+    Activate PID regulator for LeadPump with feedback from flowmeter
 
-if Vn <= 300 then
-    while current_flow < Vn
-        RampUp current_signal gradually to achieve Vn
-    end
-    Stop StandbyPump
-else
-    Start StandbyPump
-    Set current_signal_Standby = Vmin
-    Activate PID regulator for StandbyPump with feedback from flowmeter
+    if Vn <= 300 then
+                    # Fc - current flow
+        while Test is Run
+            if Fc < Fn
+                call: PID \nRamp Up current signal gradually to achieve Fn
+                call: \ncheck_of _filter(Ps)
+        call: \nSTOP Lead Pump    
+    else
+        call: \nStart SecondPump
+        Set current_signal = Fmin
+        Activate PID regulator for StandbyPump with feedback from flowmeter
 
-    while combined_flow < Vn
-        RampUp current_signal and current_signal_Standby gradually to achieve Vn
-    end
-end
+        while Test is Run
+            if Fc < Fn
+                call: PID \nRamp Up current signal gradually to achieve Fn
+        call: \nSTOP Second Pump
 
-Monitor pumps and flow continuously
-
-Stop
+except
+    Handling errors
+Return: PumpsStatus 
+End
 ```
-```mermaid
-%%{ init: { "theme": "default", "themeVariables": { "background": "#ffffff", "lineColor": "rgba(15, 155, 26, 3)", "fontColor": "#0f0f0f5b" }, "flowchart": { "curve": "linear" } } }%%
-graph TD
-  Start[START] --> Random[Master Pomp
-  Random 20-M1 or 20-M2 <-Master Pomp]-->
-  Flow[Flow>=300]-->Check{Czy warunek A?}
-  Check -- Tak --> Action1[Wykonaj akcję A]
-  Check -- Nie --> Action2[Wykonaj akcję B]
-  Action1 --> End[STOP]
-  Action2 --> End
+## 🔹## 🔹 Emptying water of the system 
+##  def-> empting(Ts)
+```tefcha
+call:\nEmptying water of the system
+try
+
+    OPEN 20-K2
+    OPEN 20-K6
+
+    while Tt<Ts 
+        if Tw>Ts
+            set: \nERROR:=True
+            break    
+    CLOSE 20-K6
+    CLOSE 20-K2
+
+except
+    if ERROR==True
+        Cooling system \nis not empty, \ndoesn't ability to empting
+    if if 20-K2 is OPEN
+        CLOSE 20-K2 
+    if if 20-K6 is OPEN       
+    CLOSE 20-K6
+Return: EmptingStatus 
+End
+```
+
+
+## 🔹 Flushing of the system 
+##  def-> flushing(Q, Im, Tp, Tw)
+```tefcha
+call:\nFlushing of the system 
+try
+    Randomly select LeadPump from {M1, M2}
+    call: \nSTART chosen Pump
+    Qt=1
+    while Q<=Qt
+        Set current signal to Im
+        call: \nDelay(Tp)
+        Set current signal to Imin
+        Qt +=1
+        call: \nDelay(Tp)
+        if Tw<Ts
+            set: \nERROR:=True
+            break
+    call: \nSTOP chosen Pump
+
+except 
+    if ERROR==True
+        Flusing is Failed
+        call: \nSTOP chosen Pump
+
+Return: FlushingStatus 
+End
+```
+
+## 🔹 Layout 
+##  def-> flayout()
+```tefcha
+Level of water tank
+Pressure air test
+Fill system of water
+if Presure water test
+Flow control of pumps
+call: \nTEST of Panel
+Remove water from system
+
+
+
+
+End
 ```
