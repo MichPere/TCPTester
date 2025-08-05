@@ -3,9 +3,9 @@
 ```tefcha
 try
     call: \nCheck Level
-    if Ls>=20-BL1
+    if Ls<=20-BL1
         OPEN 20-K5
-        while Ls>=20-BL1
+        while Ls<=20-BL1
             if Tw>=Ts
             else
                 set: \nERROR:=True
@@ -54,7 +54,7 @@ try
         call: \n Delay(T1)
         20-K8 CLOSE
             
-        while Ppr>20-PB2
+        while Ppr<20-PB2
             if Tw>Ts
                 set: \nERROR:=True
                 break
@@ -152,7 +152,7 @@ End
 try
     Check of Filter
     while 20-M1 is RUN
-        ∆P:=(20-BP2 - 20-PB3)
+        ∆P:=(20-BP2 - 20-BP3)
         if ∆P>Ps 
             Warning:= Rinsing of Filter 
         else
@@ -211,7 +211,7 @@ try
     if Vn <= 300 then
                     # Fc - current flow
         while Test is Run
-            if Fc < Fn
+            if Fn <= Fc
                 call: PID \nRamp Up current signal gradually to achieve Fn
                 call: \ncheck_of _filter(Ps)
         call: \nSTOP Lead Pump    
@@ -269,7 +269,7 @@ try
     while Q<=Qt
         Set current signal to Im
         call: \nDelay(Tp)
-        Set current signal to Imin
+        Set current signal to I:=4mA
         Qt +=1
         call: \nDelay(Tp)
         if Tw<Ts
@@ -314,7 +314,8 @@ Fill system of water
 if Requirement water test
     Pressure water test
 Flushing of the system
-Compare flows
+if RequirementCompare flows
+    Compare flows
 Flow control of pumps
 call: \nTEST of Panel
 Remove water from system
