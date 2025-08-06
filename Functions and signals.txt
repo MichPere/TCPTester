@@ -1,6 +1,6 @@
 # nazwy sesnorów odpowiadają wartością odczytywanych przez system
 
-Co do zrobienia?	
+Co to to zawiera?	
 	
 	x- próba ciśnieia powietrzem
 	x- próba ciśnienia wodą
@@ -11,7 +11,7 @@ Co do zrobienia?
 	x- detekcja stopnia zanieczyszczenia filtra po różnicy ciśnień
 	x- obsluga czyszczenia filtra
 	x- pompa obiegowa na niskim poziomie
-	x- Flash
+	x- flash
 
 	x- złożenie do KUPY
 
@@ -25,6 +25,8 @@ Co do zrobienia?
 		
 		Ts - mierzony czas napełniania zbiornika.
 
+		# Blok realizuje sprawdzenie poziomu wody w zbiorniku.
+
 #------------------------------------------------------
 
 	fill_system_of_water(Pm, Ppa, T1, Tw, Ts)
@@ -35,9 +37,11 @@ Co do zrobienia?
 		
 		Ts - mierzony czas napełniania systemu.
 
+		# Napełnienie systemu chłodzenia testowanego panelu wodą.
+
 #------------------------------------------------------
 
-	pressure air test(Ps, Pda, Twa, Td, Ts1)
+	pressure_air_test(Ps, Pda, Twa, Td, Ts1)
 		Ps - ciśnienie początkowe próby, powietrza.
 		Pda - dopuszczalny spadek ciśnienia powietrza. 
 		Twa - maksymalny czas napełnia systemu powietrzem.
@@ -46,9 +50,11 @@ Co do zrobienia?
 		
 		Ts - mierzony czas napełniania.
 
+		# Test szczelności testowanego panelu przy wykorzystaniu powietrza
+
 #------------------------------------------------------
 
-	pressure water test(Ps, Pd, Tw, Td, Ts1)
+	pressure_water_test(Ps, Pd, Tw, Td, Ts1)
 		Ps - ciśnienie początkowe wody.
 		Pd - dopuszczalny spadek ciśnienia powietrza. 
 		Tw - maksymalny czas napełnia systemu powietrzem.
@@ -57,26 +63,38 @@ Co do zrobienia?
 		
 		Ts - mierzony czas napełniania.
 
+		# Test szczelności testowanego panelu przy wykorzystaniu wody
+
 #-------------------------------------------------------
 	check_of _filter(Ps)
 		Ps - maksymalne strata ciśnienie na filtrze
 
+		# Kontrola stopnia zabrudzenia filtra
+
 #------------------------------------------------------
-	insing_of_filter(Tc)
+	rinsing_of_filter(Tc)
 		Tc - czas potrzebny na przepłukanie filtra
+
+		# Procedura płukania filtra
+
+#------------------------------------------------------
+	free_run(Imin)
+		Im - wartość prądu pętli prądowej (prędkość obrotowa pompy)
+
+		# Wolny bieg pompy 
 
 #------------------------------------------------------
 	flow_control_of_pumps(Fmin, Fn)
 		Fmin - przepływ minimalny
 		Fn - przepływ nominalny
 
+		# Kontrola przepływu zgodnie z profilem podczas testu
+
 #------------------------------------------------------
 	empting(Tt)
 		Tt - przewidywany czas opróżniania układu.
 
-#------------------------------------------------------
-	comparing_flow(Im)
-		Im - wartość prądu pętli prądowej (prędkość obrotowa pompy)
+		# Opróżnianianie układu
 
 #------------------------------------------------------
 	flushing(Q,Im)
@@ -84,3 +102,17 @@ Co do zrobienia?
 		Im - wartość prądu pętli prądowej (prędkość obrotowa pompy)
 		Tp - czas płukania i przerwy.
 		Tw - maksymalny czas operacji
+
+		# Płukanie układu (odpowietrzanie, usuwanie zanieczyszczeń)
+
+#------------------------------------------------------
+	comparing_flow(Im)
+		Im - wartość prądu pętli prądowej (prędkość obrotowa pompy)
+
+		# Porównywanie przepływów na stack w rectifier
+
+#------------------------------------------------------
+	layout()
+
+	# złożenie w całość i kolejność
+		
