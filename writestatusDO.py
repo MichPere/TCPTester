@@ -1,4 +1,5 @@
 from pymodbus.client import ModbusTcpClient
+import yaml
 
 # Połączenie z ADAM
 client = ModbusTcpClient('10.0.0.2', port=502)
