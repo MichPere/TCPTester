@@ -1,6 +1,7 @@
 ## 🔹 Check Level of Water Tank; 
 ##    def-> level_of_water(Ls, Tw)
 ```tefcha
+#Sprawdzenie poziomu w dużym zbiorniku
 try
     if Ls<=20-BL1
         OPEN 20-K5
